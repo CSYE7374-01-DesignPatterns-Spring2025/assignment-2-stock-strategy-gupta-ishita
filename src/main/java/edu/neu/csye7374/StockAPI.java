@@ -1,32 +1,25 @@
 package edu.neu.csye7374;
 
-public class StockAPI {
-    private String iD;
-    private String name;
+public abstract class StockAPI implements Tradable {
+    private String id;
     private double price;
     private String description;
 
-    public StockAPI(String iD, String name, double price, String description) {
-        this.iD = iD;
-        this.name = name;
+    private StrategyInterface strategyInterface;
+
+    public StockAPI(String id, double price, String description, StrategyInterface strategy) {
+        this.id = id;
         this.price = price;
         this.description = description;
+        this.strategyInterface = strategy;
     }
 
-    public String getiD() {
-        return iD;
+    public String getId() {
+        return id;
     }
 
-    public void setiD(String iD) {
-        this.iD = iD;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public double getPrice() {
@@ -47,11 +40,14 @@ public class StockAPI {
 
     @Override
     public String toString() {
-        return "StockAPI{" +
-                "iD='" + iD + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
+        return "" + id + " [Price=" + price + ", Description=" + description + "]";
+    }
+
+    public StrategyInterface getStrategyInterface() {
+        return strategyInterface;
+    }
+
+    public void setStrategyInterface(StrategyInterface strategyInterface) {
+        this.strategyInterface = strategyInterface;
     }
 }
